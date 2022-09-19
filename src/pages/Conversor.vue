@@ -5,6 +5,9 @@
                     Conversor de Moedas
                 </p>
             </div>
+            <div class="imagem_moeda">
+              <img src="https://cdn-icons-png.flaticon.com/512/2523/2523042.png" alt="">
+            </div>
             <q-form class="form" @submit="converter">
                     <q-card-section horizontal class="row no-wrap q-pt-none">
                     <q-select
@@ -21,12 +24,12 @@
                         option-label="moeda_nome"
                         map-options
                         emit-value
-                        @update:model-value="atualizaPrefixo()"
+                        @update:model-value="atualizaPrefixoA()"
                         :rules="[val => !!val || 'É necessário escolher uma moeda a ser convertida!']"
                     >
                         <template v-slot:prepend>
                             <q-avatar>
-                                <img src="src/assets/images/money-bill-solid.svg" />
+                                <img src="https://cdn-icons-png.flaticon.com/512/2382/2382625.png" />
                             </q-avatar>
                         </template>
                         <template v-slot:option="scope">
@@ -76,12 +79,12 @@
                         option-label="moeda_nome"
                         map-options
                         emit-value
-                        @update:model-value="atualizaPrefixo()"
+                        @update:model-value="atualizaPrefixoB()"
                         :rules="[val => !!val || 'É necessário escolher uma moeda como base de conversão!']"
                     >
                         <template v-slot:prepend>
                             <q-avatar>
-                                <img src="src/assets/images/money-bill-solid.svg" />
+                                <img src="https://cdn-icons-png.flaticon.com/512/2382/2382625.png" />
                             </q-avatar>
                         </template>
                         <template v-slot:option="scope">
@@ -130,6 +133,7 @@
 <script type="module">
 import { defineComponent, ref, defineEmits } from 'vue'
 import { optionsMoedas } from './options'
+import useNotify from 'src/composables/UseNotify'
 import axios from 'axios'
 
 export default defineComponent({
@@ -150,13 +154,18 @@ export default defineComponent({
       bandeira_img: '',
       prefixo: ''
     })
+
+    const { notifyError, notifySuccess } = useNotify()
+
     defineEmits(['update:conversao'])
     const conversao = ref('0.00')
 
-    const atualizaPrefixo = () => {
+    const atualizaPrefixoA = () => {
       const prefixoA = ref(optionsMoedas.find(data => data.moeda === moedaA.value.moeda))
       moedaA.value.prefixo = ref(prefixoA.value.prefixo)
+    }
 
+    const atualizaPrefixoB = () => {
       const prefixoB = ref(optionsMoedas.find(data => data.moeda === moedaB.value.moeda))
       moedaB.value.prefixo = ref(prefixoB.value.prefixo)
     }
@@ -172,13 +181,17 @@ export default defineComponent({
         }
       }
 
+      console.log('entrou aqui')
       let valorTratado = ''
       axios.request(options).then(function (response) {
+        console.log('entrou aqui')
         const valor = response.data.rates[`${moedaB.value.moeda}`].rate_for_amount
+        notifySuccess('Conversão realizada com sucesso!')
         valorTratado = parseFloat(valor).toFixed(2)
         conversao.value = moedaB.value.prefixo + ' ' + valorTratado
       }).catch(function (error) {
         console.error(error)
+        notifyError('Um erro ocorreu ao converter a moeda selecionada!')
       })
     }
 
@@ -188,7 +201,8 @@ export default defineComponent({
       optionsMoedas,
       conversao,
       converter,
-      atualizaPrefixo
+      atualizaPrefixoA,
+      atualizaPrefixoB
     }
   }
 })
@@ -221,6 +235,24 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
   }
+
+  .imagem_moeda {
+    margin: auto;
+    display: block;
+    max-height: 150px;
+    max-width: 150px;
+    width: auto;
+    height: auto;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  html, body {
+ overflow: hidden;
+}
 
   @font-face {
     font-family: seagram;
