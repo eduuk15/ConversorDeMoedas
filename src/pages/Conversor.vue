@@ -144,6 +144,7 @@
                       <img id="uk_img" src="https://cdn-icons-png.flaticon.com/512/197/197374.png">
                     </div>
                     </q-card-section>
+                    <p>Ícones e imagens: <a href="https://www.flaticon.com/br/">www.flaticon.com</a></p>
             </q-form>
         </div>
 </template>
