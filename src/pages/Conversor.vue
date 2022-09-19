@@ -227,6 +227,9 @@ export default defineComponent({
 </script>
 
 <style>
+
+@import url('http://fonts.cdnfonts.com/css/seagram-tfb');
+
   .form {
     padding: 35px;
     height: 500px;
@@ -240,7 +243,7 @@ export default defineComponent({
   .text-h2 {
     text-align: center;
     padding-top: 50px;
-    font-family: 'seagram';
+    font-family: 'Seagram tfb', sans-serif;
   }
 
   #second_card {
@@ -307,8 +310,9 @@ export default defineComponent({
  overflow: hidden;
 } */
 
-  @font-face {
+  /* @font-face {
     font-family: seagram;
-    src: url(http://truefonts.blogspot.com/2012/12/seagram-font.html);
-  }
+    src: url(public/font/Seagram_tfb.ttf);
+  } */
+
 </style>
