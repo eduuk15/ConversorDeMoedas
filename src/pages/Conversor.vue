@@ -14,7 +14,7 @@
                         class="text-h5"
                         popup-content-class="text-h6"
                         label="Moeda a ser convertida"
-                        color="blue-4"
+                        color="blue-7"
                         bg-color="grey-2"
                         label-color="blue-7"
                         outlined
@@ -126,6 +126,24 @@
                     />
                     </div>
 
+                    <q-card-section id="terceiro" horizontal class="row no-wrap q-pt-none">
+                    <div class="ue">
+                      <b>União Europeia</b>: Alemanha, Áustria, Bélgica, Bulgária*, Chipre, Croácia*, Dinamarca*, Eslováquia, Eslovénia, Espanha, Estónia, Finlândia,
+                      França, Grécia, Hungria*, Irlanda, Itália, Letônia, Lituânia, Luxemburgo, Malta, Países Baixos (Holanda), Polônia*, Portugal, Reṕública Tcheca*, Romênia* e Suécia*.
+                      <br>
+                      <br>
+                      * = País não pertencente à zona do Euro
+                      <img id="ue_img" src="https://cdn-icons-png.flaticon.com/512/197/197615.png">
+                    </div>
+                    <div class="uk">
+                      <b>Reino Unido</b>: Escócia, Inglaterra, Irlanda do Norte e País de Gales.
+                      <br>
+                      <br>
+                      <b>Territórios que não pertencem ao Reino Unido, mas usam a libra esterlina:</b> Anguilla, Bermudas, Geórgia do Sul, Gibraltar,
+                      Ilhas Cayman, Ilhas Malvinas, Ilhas Pitcairn, Ilhas Virgens Britânicas, Monte Serrat e Santa Helena.
+                      <img id="uk_img" src="https://cdn-icons-png.flaticon.com/512/197/197374.png">
+                    </div>
+                    </q-card-section>
             </q-form>
         </div>
 </template>
@@ -244,15 +262,50 @@ export default defineComponent({
     width: auto;
     height: auto;
   }
+
+  #terceiro {
+    padding: 35px;
+  }
+
+  .ue {
+    width: 100%;
+    font-size: 1.3em;
+  }
+  .uk {
+    width: 100%;
+    font-size: 1.3em;
+    padding-left: 60px;
+  }
+
+  #ue_img {
+    padding-top: 20px;
+    margin: auto;
+    display: block;
+    max-height: 100px;
+    max-width: 100px;
+    width: auto;
+    height: auto;
+  }
+
+  #uk_img {
+    padding-top: 20px;
+    margin: auto;
+    display: block;
+    max-height: 100px;
+    max-width: 100px;
+    width: auto;
+    height: auto;
+  }
+
   img {
     height: 100%;
     width: 100%;
     object-fit: contain;
   }
 
-  html, body {
+  /* html, body {
  overflow: hidden;
-}
+} */
 
   @font-face {
     font-family: seagram;
