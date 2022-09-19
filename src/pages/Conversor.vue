@@ -199,10 +199,8 @@ export default defineComponent({
         }
       }
 
-      console.log('entrou aqui')
       let valorTratado = ''
       axios.request(options).then(function (response) {
-        console.log('entrou aqui')
         const valor = response.data.rates[`${moedaB.value.moeda}`].rate_for_amount
         notifySuccess('Conversão realizada com sucesso!')
         valorTratado = parseFloat(valor).toFixed(2)
