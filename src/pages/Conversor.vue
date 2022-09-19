@@ -196,14 +196,13 @@ export default defineComponent({
 
 <style>
   .form {
-    padding-left: 20%;
-    padding-right: 20%;
+    padding: 35px;
     height: 500px;
-    padding-top: 80px;
+    width: 100%;
     font-family: 'Times New Roman', Times, serif;
   }
   .text-h5 {
-    width: 500px;
+    width: 100%;
   }
 
   .text-h2 {
@@ -217,9 +216,10 @@ export default defineComponent({
   }
 
   .btn {
-    padding-left: 43%;
-    padding-right: 43%;
-    padding-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @font-face {
