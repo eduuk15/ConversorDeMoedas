@@ -1,8 +1,9 @@
 <template>
         <div class="div">
+          <DarkModeToggle @emiteDarkMode="darkMode = $event"/>
             <div>
                 <p class="text-h2">
-                    Conversor de Moedas
+                    Conversor de Moedas {{ darkMode }}
                 </p>
             </div>
             <div class="imagem_moeda">
@@ -15,7 +16,10 @@
                         popup-content-class="text-h6"
                         label="Moeda a ser convertida"
                         color="blue-7"
-                        bg-color="grey-2"
+                        :bg-color="{
+                          'grey-2' : darkMode == false,
+                          'white' : darkMode == true,
+                        }"
                         label-color="blue-7"
                         outlined
                         v-model="moedaA.moeda"
@@ -50,7 +54,10 @@
                         class="text-h5"
                         label="Valor para converter"
                         color="blue-7"
-                        bg-color="grey-2"
+                        :bg-color="{
+                          'grey-2' : darkMode == false,
+                          'white' : darkMode == true,
+                        }"
                         label-color="blue-7"
                         outlined
                         v-model="moedaA.quantidade"
@@ -70,7 +77,10 @@
                         popup-content-class="text-h6"
                         label="Moeda na qual será convertida"
                         color="green-6"
-                        bg-color="grey-2"
+                        :bg-color="{
+                          'grey-2' : darkMode == false,
+                          'white' : darkMode == true
+                        }"
                         label-color="green-6"
                         outlined
                         v-model="moedaB.moeda"
@@ -105,7 +115,10 @@
                         class="text-h5"
                         label="Valor convertido"
                         color="green-8"
-                        bg-color="grey-4"
+                        :bg-color="{
+                          'grey-4' : darkMode == false,
+                          'white' : darkMode == true,
+                        }"
                         label-color="green-8"
                         outlined
                         :model-value="conversao"
@@ -119,12 +132,23 @@
                        <q-btn
                         label="Converter"
                         type="submit"
-                        icon="img:https://cdn-icons-png.flaticon.com/512/150/150531.png"
+                        icon="img:https://cdn-icons-png.flaticon.com/512/225/225571.png"
                         stack
-                        outline
                         style="color: goldenrod;"
+                        outline
                     />
                     </div>
+
+                    <!-- <div class="btn" v-if="darkMode == true">
+                       <q-btn
+                        label="Converter"
+                        type="submit"
+                        icon="img:https://cdn-icons-png.flaticon.com/512/8096/8096949.png"
+                        stack
+                        style="color: goldenrod;"
+                        outline
+                    />
+                    </div> -->
 
                     <q-card-section id="terceiro" horizontal class="row no-wrap q-pt-none">
                     <div class="ue">
@@ -154,9 +178,13 @@ import { defineComponent, ref, defineEmits } from 'vue'
 import { optionsMoedas } from './options'
 import useNotify from 'src/composables/UseNotify'
 import axios from 'axios'
+import DarkModeToggle from 'src/components/DarkModeToggle.vue'
 
 export default defineComponent({
   name: 'PageConversor',
+  components: {
+    DarkModeToggle
+  },
   setup () {
     const moedaA = ref({
       moeda: '',
@@ -173,6 +201,8 @@ export default defineComponent({
       bandeira_img: '',
       prefixo: ''
     })
+
+    const darkMode = ref('')
 
     const { notifyError, notifySuccess } = useNotify()
 
@@ -219,7 +249,8 @@ export default defineComponent({
       conversao,
       converter,
       atualizaPrefixoA,
-      atualizaPrefixoB
+      atualizaPrefixoB,
+      darkMode
     }
   }
 })
