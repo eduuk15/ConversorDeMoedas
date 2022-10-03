@@ -3,7 +3,7 @@
           <DarkModeToggle @emiteDarkMode="darkMode = $event"/>
             <div>
                 <p class="text-h2">
-                    Conversor de Moedas {{ darkMode }}
+                    Conversor de Moedas
                 </p>
             </div>
             <div class="imagem_moeda">
@@ -116,8 +116,8 @@
                         label="Valor convertido"
                         color="green-8"
                         :bg-color="{
-                          'grey-4' : darkMode == false,
-                          'white' : darkMode == true,
+                          'grey-4' : !darkMode,
+                          'white' : darkMode,
                         }"
                         label-color="green-8"
                         outlined
@@ -132,23 +132,12 @@
                        <q-btn
                         label="Converter"
                         type="submit"
-                        icon="img:https://cdn-icons-png.flaticon.com/512/225/225571.png"
+                        icon="img:https://cdn-icons-png.flaticon.com/512/6204/6204216.png"
                         stack
                         style="color: goldenrod;"
                         outline
                     />
                     </div>
-
-                    <!-- <div class="btn" v-if="darkMode == true">
-                       <q-btn
-                        label="Converter"
-                        type="submit"
-                        icon="img:https://cdn-icons-png.flaticon.com/512/8096/8096949.png"
-                        stack
-                        style="color: goldenrod;"
-                        outline
-                    />
-                    </div> -->
 
                     <q-card-section id="terceiro" horizontal class="row no-wrap q-pt-none">
                     <div class="ue">
@@ -286,6 +275,10 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
   }
+
+  /* #x {
+    background-color: white !important;
+  } */
 
   .imagem_moeda {
     margin: auto;
